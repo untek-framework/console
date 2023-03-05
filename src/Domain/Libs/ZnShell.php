@@ -24,7 +24,7 @@ class ZnShell
      */
     public function createProcess($command, string $mode = 'main'): Process
     {
-        $path = FilePathHelper::rootPath() . '/vendor/ntk-sandbox/packages/untek-framework/console/bin';
+        $path = FilePathHelper::rootPath() . '/vendor/untek-framework/console/bin';
 
         if(is_array($command)) {
             $commonCommand = [

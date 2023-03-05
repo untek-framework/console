@@ -79,13 +79,12 @@ class SymfonyStyle extends \Symfony\Component\Console\Style\SymfonyStyle
         return $this->askQuestion($choiceQuestion);
     }
 
-    public function choice(string $question, array $choices, $default = null)
+    public function choice(string $question, array $choices, mixed $default = null, bool $multiSelect = false): mixed
     {
         if (null !== $default) {
             $values = array_flip($choices);
             $default = $values[$default] ?? $default;
         }
-
         $choiceQuestion = new ChoiceQuestion($question, $choices, $default);
         return $this->askQuestion($choiceQuestion);
     }

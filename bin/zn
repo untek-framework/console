@@ -3,6 +3,7 @@
 
 use Untek\Core\App\Libs\ZnCore;
 use Untek\Core\Container\Libs\Container;
+use Untek\Core\DotEnv\Domain\Libs\Vlucas\VlucasBootstrap;
 use Untek\Framework\Console\Domain\Factories\ConsoleApplicationFactory;
 
 $_SERVER['MICRO_TIME'] = microtime(true);
@@ -25,6 +26,15 @@ $container = new Container();
 $znCore = new ZnCore($container);
 $znCore->init();
 
-$applicationFactory = new ConsoleApplicationFactory($container);
-$application = $applicationFactory->createApplicationInstance();
-$application->run();
+$mainEnvFile = __DIR__ . '/../../../../.env';
+$bootstrap = new VlucasBootstrap();
+$mainEnv = $bootstrap->parseFile($mainEnvFile);
+
+if(!empty($mainEnv['CONSOLE_APP_ENDPOINT'])) {
+    $endpoint = str_replace('${ROOT_DIRECTORY}', realpath( __DIR__ . '/../../../..'), $mainEnv['CONSOLE_APP_ENDPOINT']);
+    include $endpoint;
+} else {
+    $applicationFactory = new ConsoleApplicationFactory($container);
+    $application = $applicationFactory->createApplicationInstance();
+    $application->run();
+}

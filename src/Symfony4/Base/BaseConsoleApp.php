@@ -87,7 +87,7 @@ abstract class BaseConsoleApp extends BaseApp
     {
     }
 
-    protected function createConsole(array $consoleCommands)
+    protected function createConsole(?array $consoleCommands)
     {
         /** @var Application $application */
         $application = $this->getContainer()->get(Application::class);

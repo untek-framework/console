@@ -2,7 +2,7 @@
 
 namespace Untek\Framework\Console\Symfony4\Style;
 
-use Untek\Core\Code\Helpers\PropertyHelper;
+use Untek\Core\Instance\Helpers\PropertyHelper;
 use Untek\Core\Collection\Interfaces\Enumerable;
 use Untek\Core\Text\Helpers\Inflector;
 use Untek\Domain\Entity\Helpers\EntityHelper;

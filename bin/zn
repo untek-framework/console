@@ -28,8 +28,10 @@ $znCore->init();
 
 $bootstrap = new VlucasBootstrap();
 $mainEnv = $bootstrap->parseFile(__DIR__ . '/../../../../.env');
-$localEnv = $bootstrap->parseFile(__DIR__ . '/../../../../.env.local');
-$mainEnv = array_merge($mainEnv, $localEnv);
+if(file_exists(__DIR__ . '/../../../../.env.local')) {
+    $localEnv = $bootstrap->parseFile(__DIR__ . '/../../../../.env.local');
+    $mainEnv = array_merge($mainEnv, $localEnv);
+}
 
 if(!empty($mainEnv['CONSOLE_APP_ENDPOINT'])) {
     $endpoint = str_replace('${ROOT_DIRECTORY}', realpath( __DIR__ . '/../../../..'), $mainEnv['CONSOLE_APP_ENDPOINT']);

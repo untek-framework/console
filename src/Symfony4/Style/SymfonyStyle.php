@@ -5,10 +5,10 @@ namespace Untek\Framework\Console\Symfony4\Style;
 use Untek\Core\Instance\Helpers\PropertyHelper;
 use Untek\Core\Collection\Interfaces\Enumerable;
 use Untek\Core\Text\Helpers\Inflector;
-use Untek\Domain\Entity\Helpers\EntityHelper;
-use Untek\Domain\Validator\Entities\ValidationErrorEntity;
-use Untek\Domain\Validator\Exceptions\UnprocessibleEntityException;
-use Untek\Domain\Validator\Helpers\ValidationHelper;
+use Untek\Model\Entity\Helpers\EntityHelper;
+use Untek\Model\Validator\Entities\ValidationErrorEntity;
+use Untek\Model\Validator\Exceptions\UnprocessibleEntityException;
+use Untek\Model\Validator\Helpers\ValidationHelper;
 use Untek\Framework\Console\Symfony4\Question\ChoiceQuestion;
 
 class SymfonyStyle extends \Symfony\Component\Console\Style\SymfonyStyle

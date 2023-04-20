@@ -14,6 +14,6 @@ class ConsoleFrameworkBundle extends BaseBundle
 
     public function build(ContainerBuilder $containerBuilder)
     {
-        $this->importServices($containerBuilder, __DIR__ . '/DependencyInjection/Symfony/services/console.php');
+        $this->importServices($containerBuilder, __DIR__ . '/../Resources/config/services/main.php');
     }
 }

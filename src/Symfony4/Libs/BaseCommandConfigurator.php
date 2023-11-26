@@ -23,13 +23,14 @@ abstract class BaseCommandConfigurator implements CommandConfiguratorInterface
     {
         $reflictionClass = new \ReflectionClass($commandClassName);
         if (!$reflictionClass->isAbstract()) {
-            try {
-                $commandInstance = $this->container->get($commandClassName);
-                $this->registerCommandInstance($commandInstance);
+            $commandInstance = $this->container->get($commandClassName);
+            $this->registerCommandInstance($commandInstance);
+            /*try {
+                
             } catch (ContainerExceptionInterface $e) {
                 $message = "DI dependencies not resolved for class \"$commandClassName\"!";
                 $this->logger?->warning($message);
-            }
+            }*/
         }
     }
 

@@ -13,6 +13,11 @@ abstract class BaseShellNew
     protected $path = null;
     private $sudo = false;
 
+    public function __construct(string $path = null)
+    {
+        $this->path = $path;
+    }
+
     public function isSudo(): bool
     {
         return $this->sudo;

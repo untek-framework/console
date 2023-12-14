@@ -8,12 +8,7 @@ class RemoteShell extends LocalShell implements ShellInterface
 {
 
     private ?string $sudoPassword = null;
-    private string $remoteHost;
-    private string $remoteUser;
-    private int $remotePort = 22;
-    private string $remotePassword;
-
-    protected $path = null;
+    private SshConfig $sshConfig;
 
     public function __construct(string $path = null)
     {
@@ -21,54 +16,24 @@ class RemoteShell extends LocalShell implements ShellInterface
     }
 
     /**
-     * @var string
-     * Файл должен содержать примерно следующее: echo Qqqwww111
+     * @return SshConfig
      */
-    private string $remotePasswordFile;
+    public function getSshConfig(): SshConfig
+    {
+        return $this->sshConfig;
+    }
+
+    /**
+     * @param SshConfig $sshConfig
+     */
+    public function setSshConfig(SshConfig $sshConfig): void
+    {
+        $this->sshConfig = $sshConfig;
+    }
 
     public function setSudoPassword(string $sudoPassword): void
     {
         $this->sudoPassword = $sudoPassword;
-    }
-
-    /**
-     * @param string $remoteHost
-     */
-    public function setRemoteHost(string $remoteHost): void
-    {
-        $this->remoteHost = $remoteHost;
-    }
-
-    /**
-     * @param string $remoteUser
-     */
-    public function setRemoteUser(string $remoteUser): void
-    {
-        $this->remoteUser = $remoteUser;
-    }
-
-    /**
-     * @param int $remotePort
-     */
-    public function setRemotePort(int $remotePort): void
-    {
-        $this->remotePort = $remotePort;
-    }
-
-    /**
-     * @param string $remotePassword
-     */
-    public function setRemotePassword(string $remotePassword): void
-    {
-        $this->remotePassword = $remotePassword;
-    }
-
-    /**
-     * @param string $remotePasswordFile
-     */
-    public function setRemotePasswordFile(string $remotePasswordFile): void
-    {
-        $this->remotePasswordFile = $remotePasswordFile;
     }
 
     public function runCmd(string $cmd, string $path = null): string
@@ -88,14 +53,15 @@ class RemoteShell extends LocalShell implements ShellInterface
 
     private function prepareSsh(): string
     {
+        $config = $this->sshConfig;
         $command = '';
-        if (isset($this->remotePasswordFile)) {
-            $command .= "export SSH_ASKPASS=\"{$this->remotePasswordFile}\" && setsid ";
-        } elseif (isset($this->remotePassword)) {
+        if ($config->getPasswordFile()) {
+            $command .= "export SSH_ASKPASS=\"{$config->getPasswordFile()}\" && setsid ";
+        } elseif ($config->getPassword()) {
             $command .= "echo \"echo shee8Eem\" > /tmp/1 && chmod 777 /tmp/1 && ";
             $command .= "export SSH_ASKPASS=\"/tmp/1\" && setsid ";
         }
-        $command .= "ssh {$this->remoteUser}@{$this->remoteHost} -p {$this->remotePort}";
+        $command .= "ssh {$config->getUser()}@{$config->getHost()} -p {$config->getPort()}";
         return $command;
     }
 }

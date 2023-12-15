@@ -8,27 +8,9 @@ class RemoteShell extends LocalShell implements ShellInterface
 {
 
     private ?string $sudoPassword = null;
-    private SshConfig $sshConfig;
 
-    public function __construct(string $path = null)
+    public function __construct(private SshConfig $sshConfig)
     {
-        $this->path = $path;
-    }
-
-    /**
-     * @return SshConfig
-     */
-    public function getSshConfig(): SshConfig
-    {
-        return $this->sshConfig;
-    }
-
-    /**
-     * @param SshConfig $sshConfig
-     */
-    public function setSshConfig(SshConfig $sshConfig): void
-    {
-        $this->sshConfig = $sshConfig;
     }
 
     public function setSudoPassword(string $sudoPassword): void

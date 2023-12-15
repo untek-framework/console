@@ -16,10 +16,10 @@ class LocalShell implements ShellInterface
     protected $path = null;
     protected $callback = null;
 
-    public function __construct(string $path = null)
+    /*public function __construct(string $path = null)
     {
         $this->path = $path;
-    }
+    }*/
 
     public function setCallback(callable $callback = null): void
     {

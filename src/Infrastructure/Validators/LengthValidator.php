@@ -3,12 +3,12 @@
 namespace Untek\Framework\Console\Infrastructure\Validators;
 
 use Untek\Framework\Console\Infrastructure\Interfaces\CliValidatorInterface;
-use Untek\Utility\CodeGenerator\Presentation\Libs\Exception\RuntimeCommandException;
+use Untek\Framework\Console\Infrastructure\Exceptions\RuntimeCommandException;
 
 class LengthValidator implements CliValidatorInterface
 {
 
-    public static function validate($value)
+    public static function validate($length)
     {
         if (!$length) {
             return $length;

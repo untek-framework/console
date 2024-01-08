@@ -3,7 +3,7 @@
 namespace Untek\Framework\Console\Infrastructure\Validators;
 
 use Untek\Framework\Console\Infrastructure\Interfaces\CliValidatorInterface;
-use Untek\Utility\CodeGenerator\Presentation\Libs\Exception\RuntimeCommandException;
+use Untek\Framework\Console\Infrastructure\Exceptions\RuntimeCommandException;
 
 class NotBlankValidator implements CliValidatorInterface
 {

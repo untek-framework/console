@@ -3,7 +3,7 @@
 namespace Untek\Framework\Console\Domain\Base;
 
 use Symfony\Component\Process\Process;
-use Untek\Component\Time\Enums\TimeEnum;
+use Untek\Component\Measure\Time\Enums\TimeEnum;
 use Untek\Framework\Console\Domain\Helpers\CommandLineHelper;
 
 abstract class BaseShellNew

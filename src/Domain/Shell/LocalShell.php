@@ -4,7 +4,7 @@ namespace Untek\Framework\Console\Domain\Shell;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use Untek\Component\Time\Enums\TimeEnum;
+use Untek\Component\Measure\Time\Enums\TimeEnum;
 use Untek\Framework\Console\Domain\Helpers\CommandLineHelper;
 use Untek\Framework\Console\Domain\Interfaces\ShellInterface;
 

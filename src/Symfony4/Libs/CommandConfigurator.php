@@ -6,7 +6,9 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 
+DeprecateHelper::hardThrow();
 class CommandConfigurator extends BaseCommandConfigurator
 {
 

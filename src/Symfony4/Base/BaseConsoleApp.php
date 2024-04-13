@@ -11,12 +11,15 @@ use Untek\Core\App\Libs\ZnCore;
 use Untek\Core\App\Subscribers\PhpErrorSubscriber;
 use Untek\Core\Bundle\Base\CallMethodLoader;
 use Untek\Core\Bundle\Libs\BundleLoader;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Core\ConfigManager\Interfaces\ConfigManagerInterface;
 use Untek\Core\Container\Interfaces\ContainerConfiguratorInterface;
 use Untek\Core\EventDispatcher\Interfaces\EventDispatcherConfiguratorInterface;
 use Untek\Framework\Console\Domain\Libs\BundleLoaders\ConsoleLoader;
 use Untek\Framework\Console\Domain\Subscribers\ConsoleDetectTestEnvSubscriber;
 use Untek\Framework\Console\Symfony4\Libs\CommandConfigurator;
+
+DeprecateHelper::hardThrow();
 
 abstract class BaseConsoleApp extends BaseApp
 {

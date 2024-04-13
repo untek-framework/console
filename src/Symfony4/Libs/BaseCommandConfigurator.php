@@ -4,23 +4,27 @@ namespace Untek\Framework\Console\Symfony4\Libs;
 
 use Psr\Container\ContainerExceptionInterface;
 use Symfony\Component\Console\Command\Command;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Framework\Console\Symfony4\Helpers\CommandConfiguratorHelper;
 use Untek\Framework\Console\Symfony4\Interfaces\CommandConfiguratorInterface;
 
+DeprecateHelper::hardThrow();
 abstract class BaseCommandConfigurator implements CommandConfiguratorInterface
 {
 
     abstract public function registerCommandInstance(Command $commandInstance): void;
 
-    public function registerFromNamespaceList(array $namespaceList): void
+    /*public function registerFromNamespaceList(array $namespaceList): void
     {
         foreach ($namespaceList as $namespace) {
             $this->registerFromNamespace($namespace);
         }
-    }
+    }*/
 
     public function registerCommandClass(string $commandClassName): void
     {
+//        DeprecateHelper::hardThrow();
+        
         $reflictionClass = new \ReflectionClass($commandClassName);
         if (!$reflictionClass->isAbstract()) {
             $commandInstance = $this->container->get($commandClassName);
@@ -34,11 +38,11 @@ abstract class BaseCommandConfigurator implements CommandConfiguratorInterface
         }
     }
 
-    protected function registerFromNamespace(string $namespace): void
+    /*protected function registerFromNamespace(string $namespace): void
     {
         $commands = CommandConfiguratorHelper::scanCommandsByNamespace($namespace);
         foreach ($commands as $commandClassName) {
             $this->registerCommandClass($commandClassName);
         }
-    }
+    }*/
 }

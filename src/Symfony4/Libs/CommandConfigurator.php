@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Untek\Core\Code\Helpers\DeprecateHelper;
 
 DeprecateHelper::hardThrow();
+
 class CommandConfigurator extends BaseCommandConfigurator
 {
 

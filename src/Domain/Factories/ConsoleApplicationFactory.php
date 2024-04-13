@@ -5,8 +5,11 @@ namespace Untek\Framework\Console\Domain\Factories;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Untek\Core\App\Interfaces\AppInterface;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Core\DotEnv\Domain\Libs\Vlucas\VlucasBootstrap;
 use Untek\Framework\Console\Domain\Libs\ConsoleApp;
+
+DeprecateHelper::hardThrow();
 
 class ConsoleApplicationFactory extends BaseConsoleApplicationFactory
 {

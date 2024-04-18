@@ -14,27 +14,10 @@ use Untek\Framework\Console\Symfony4\Question\ChoiceQuestion;
 class SymfonyStyle extends \Symfony\Component\Console\Style\SymfonyStyle
 {
 
-
-    /**
-     * @param object $reportForm
-     * @return array | Enumerable | ValidationErrorEntity[] | null
-     */
-    protected function validateForm(object $reportForm): ?Enumerable
+    public function clear(): void
     {
-        try {
-            ValidationHelper::validateEntity($reportForm);
-        } catch (UnprocessibleEntityException $e) {
-            $message = '';
-            foreach ($e->getErrorCollection() as $errorEntity) {
-                $message .= $errorEntity->getField() . ' - ' . $errorEntity->getMessage() . PHP_EOL;
-            }
-            $message = trim($message);
-            $this->warning($message);
-            return $e->getErrorCollection();
-        }
-        return null;
+        $this->write(sprintf("\033\143"));
     }
-
 
     public function inputFormValues(object $reportForm, array $attributes = null)
     {
@@ -87,5 +70,25 @@ class SymfonyStyle extends \Symfony\Component\Console\Style\SymfonyStyle
         }
         $choiceQuestion = new ChoiceQuestion($question, $choices, $default);
         return $this->askQuestion($choiceQuestion);
+    }
+
+    /**
+     * @param object $reportForm
+     * @return array | Enumerable | ValidationErrorEntity[] | null
+     */
+    protected function validateForm(object $reportForm): ?Enumerable
+    {
+        try {
+            ValidationHelper::validateEntity($reportForm);
+        } catch (UnprocessibleEntityException $e) {
+            $message = '';
+            foreach ($e->getErrorCollection() as $errorEntity) {
+                $message .= $errorEntity->getField() . ' - ' . $errorEntity->getMessage() . PHP_EOL;
+            }
+            $message = trim($message);
+            $this->warning($message);
+            return $e->getErrorCollection();
+        }
+        return null;
     }
 }

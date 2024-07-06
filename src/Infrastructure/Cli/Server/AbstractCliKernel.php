@@ -2,15 +2,15 @@
 
 namespace Untek\Framework\Console\Infrastructure\Cli\Server;
 
-use Untek\Core\App\Bootstrap\ConfigDirectory;
-use Forecast\Map\Shared\Infrastructure\Bootstrap\Kernel;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputOption;
+use Untek\Core\App\Bootstrap\AbstractAppKernel;
+use Untek\Core\App\Bootstrap\ConfigDirectory;
 
-class CliKernel
+abstract class AbstractCliKernel
 {
 
-    protected Kernel $kernel;
+    protected AbstractAppKernel $kernel;
     protected ConfigDirectory $configDirectory;
     protected string $cacheDirectory;
     protected bool $isImportLocalConfig = false;
@@ -18,6 +18,8 @@ class CliKernel
     protected string $environment;
     protected bool $isDebug = false;
     protected bool $isTest = false;
+
+    abstract protected function createKernel(): AbstractAppKernel;
 
     public function __construct(
         string $projectDirectory,
@@ -47,10 +49,10 @@ class CliKernel
         return $application;
     }
 
-    protected function getKernel(): Kernel
+    protected function getKernel(): AbstractAppKernel
     {
         if (!isset($this->kernel)) {
-            $kernel = new Kernel($this->configDirectory, $this->context, $this->environment, $this->cacheDirectory, $this->isImportLocalConfig, $this->isDebug, $this->isTest);
+            $kernel = $this->createKernel();
             $kernel->boot();
             register_shutdown_function([$this, 'terminateClosure']);
             /*register_shutdown_function(function () use ($kernel) {

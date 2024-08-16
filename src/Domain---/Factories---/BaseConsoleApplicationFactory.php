@@ -4,8 +4,11 @@ namespace Untek\Framework\Console\Domain\Factories;
 
 use Symfony\Component\Console\Application;
 use Untek\Core\App\Interfaces\AppInterface;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Core\Container\Interfaces\ContainerConfiguratorInterface;
 use Untek\Core\EventDispatcher\Interfaces\EventDispatcherConfiguratorInterface;
+
+DeprecateHelper::hardThrow();
 
 abstract class BaseConsoleApplicationFactory
 {

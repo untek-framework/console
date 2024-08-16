@@ -5,7 +5,10 @@ namespace Untek\Framework\Console\Symfony4\Libs;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Framework\Console\Symfony4\Interfaces\CommandConfiguratorInterface;
+
+DeprecateHelper::hardThrow();
 
 class InMemoryCommandConfigurator extends BaseCommandConfigurator
 {

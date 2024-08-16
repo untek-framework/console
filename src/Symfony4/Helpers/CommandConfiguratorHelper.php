@@ -3,7 +3,10 @@
 namespace Untek\Framework\Console\Symfony4\Helpers;
 
 use Untek\Core\Code\Helpers\ComposerHelper;
+use Untek\Core\Code\Helpers\DeprecateHelper;
 use Untek\Core\FileSystem\Helpers\FindFileHelper;
+
+DeprecateHelper::hardThrow();
 
 class CommandConfiguratorHelper
 {

@@ -3,6 +3,9 @@
 namespace Untek\Framework\Console\Symfony4\Helpers;
 
 use Symfony\Component\Console\Output\OutputInterface;
+use Untek\Core\Code\Helpers\DeprecateHelper;
+
+DeprecateHelper::hardThrow();
 
 class OutputHepler
 {
